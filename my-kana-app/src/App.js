@@ -5,15 +5,9 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState([]);
+  // Store the data in a state variable.
+  // We are passing an empty array as the default value.
   const [hiraganaTable, setHiraganaTable] = useState([]);
-
-  const getData = async () => {
-    axios.defaults.headers.common['X-Master-Key'] = '$2b$10$MR8h4EUuK7ZBBfvmKRYutuV3jO618Lr.O3SAjk5oZl/3G/UEGj1jK';
-    const { data } = await axios.get('https://api.jsonbin.io/v3/b/640646a9c0e7653a05837b5a');
-    doHiraganaTable(data.record.hiragana);
-    setData(data.record.hiragana);
-  };
 
   const doHiraganaTable = (characters) => {
     let
@@ -46,11 +40,18 @@ function App() {
       table[row][col] = character;
     });
 
-    console.log('hiraganaTable: ', table);
     setHiraganaTable(table);
   }
 
+  // The useEffect() hook fires any time that the component is rendered.
+  // An empty array is passed as the second argument so that the effect only fires once.
   useEffect(() => {
+    const getData = async () => {
+      axios.defaults.headers.common['X-Master-Key'] = '$2b$10$MR8h4EUuK7ZBBfvmKRYutuV3jO618Lr.O3SAjk5oZl/3G/UEGj1jK';
+      const { data } = await axios.get('https://api.jsonbin.io/v3/b/640646a9c0e7653a05837b5a');
+      doHiraganaTable(data.record.hiragana);
+    };
+
     getData();
   }, []);
 
