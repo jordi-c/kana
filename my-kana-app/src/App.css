@@ -1,17 +1,10 @@
 .characters {
   display: flex;
   flex-wrap: wrap;
-}
-.character {
-  display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  padding: 20px;
-  text-align: center;
 }
-.character__kana {
-  font-size: 2rem;
-}
-.character__sound {
-  color: #999;
+.characters__row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
