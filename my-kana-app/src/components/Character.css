@@ -1,9 +1,14 @@
 .character {
     display: flex;
     flex-direction: column;
-    border: 1px solid #ccc;
-    padding: 20px;
+    border: 1px solid #eee;
+    padding: 10px 20px;
     text-align: center;
+    flex: 1;
+}
+.character:hover {
+    background-color: #700;
+    color: white;
 }
 .character__kana {
     font-size: 2rem;
